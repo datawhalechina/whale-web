@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Bluewhale
+  description: 'This is API specifications for bluewhale site'
+  version: 1.0.0
+servers:
+  - url: /api/v1
+paths:
+  "/api/v1/me":
+    get:
+      summary: get current user's profile
+      responses:
+        '200':
+          description: current user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+  "/api/v1/login":
+    options:
+      summary: get csrf token
+      responses:
+        '200':
+          description: options
+    post:
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginForm"
+      responses:
+        '200':
+          description: success login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+  "/api/v1/logout":
+    post:
+      summary: logout
+      responses:
+        '200':
+          description: success logout
+  "/api/v1/send-verification":
+    post:
+      summary: send verification mail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendVerificationForm"
+      responses:
+        '200':
+          description: success logout
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: integer
+                  code:
+                    type: integer
+components:
+  schemas:
+    CommonResponse: # common response which has data and code properties
+      type: object
+      properties:
+        data:
+          type: object
+        code:
+          type: integer
+    LoginForm:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+    SendVerificationForm:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        nickname:
+          type: string
+        date_joined:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
+        last_login_ip:
+          type: string
+          format: ipv4
+        description:
+          type: string
+        groups:
+          type: array
+          items:
+            $ref: "#/components/schemas/Group"
+    Group:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        name:
+          type: string
