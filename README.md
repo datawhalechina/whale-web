@@ -17,8 +17,9 @@ BlueWhale设计课程是datawhale项目开发团队，基于datawhale社区成�
 ## 学习目标
 
 - 熟悉datawhale项目开发流程
-- 掌握Django网页开发技术架构
-- 掌握javaweb后端开发
+- 掌握REST前后端分离理念及OpenAPI文档编写
+- 掌握Django后端开发技术架构
+- 掌握Vue前端开发
 - 掌握前后台端对接
 
 ## 任务安排
