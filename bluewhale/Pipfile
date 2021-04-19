@@ -13,6 +13,3 @@ itsdangerous = "*"
 
 [dev-packages]
 pycodestyle = "*"
-
-[requires]
-python_version = "3.8"

@@ -1,5 +1,5 @@
 本期任务将简介在课程中涉及的各概念、工具及框架。最终通过[环境搭建](#环境搭建)您将能搭建基础的用于开发的环境
-并成功运行示例代码（本期任务假设你已了解数据库、Python、HTTP、HTML、CSS、JavaScript等知识）。
+并成功运行示例代码（本期任务假设你已了解数据库、Python、HTTP、HTML、CSS、JavaScript、git等知识）。
 
 # REST简介
 
@@ -128,27 +128,32 @@ var app = new Vue({
 
 # 环境搭建
 
+组队完成后，由队长创建Github新的组织并将团队成员加至组织，然后将代码fork至组织仓库。
+团队成员clone fork后的仓库，如（请替换自己的组织名称）：
+
+`git clone git@github.com:whale-web-team00/whale-web.git`
+
 ## 数据库
 
-本课程将使用[MariaDB](https://mariadb.org/)作为数据库（MariaDB是MySQL的分支）
+本课程将使用[MySQL](https://www.mysql.com/)作为数据库
 
 ### 安装数据库
 
-（如果你系统中已安装MySQL或MariaDB数据库，可跳过该步骤）
+（如果你系统中已安装MySQL数据库，可跳过该步骤）
 
-* Mac (具体步骤请参考[官方博客](https://mariadb.com/resources/blog/installing-mariadb-10-1-16-on-mac-os-x-with-homebrew/))
-  - 安装：`brew install mariadb`（前置条件为系统中已经安装brew工具）
-  - 初始化基础数据库：`mysql_install_db`
-  - 启动数据库服务：`brew services start mariadb`
-  - 初始化安全选项：`mariadb-secure-installation`
-* Windows: 从官网下载安装包并安装[https://mariadb.org/download/](https://mariadb.org/download/)
-* Linux
-  - Ububtu/Debian: `sudo apt install mariadb-server`
-  - CentOS/Redhat: `sudo yum install MariaDB-server MariaDB-client`
+* Mac (图形界面)
+  - 从官网下载DMG安装包[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
+  - 双击并按提示安装
+  - 安装完成后，在系统设置最后能够找到MySQL的服务，如下所示
+![system preferences - mysql](./images/task00-mysql.png)
 
-## 初始化数据库
+* Windows:
+  - 从官网下载MySQL Install for Windows安装包[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
+  - 双击并按提示安装
 
-通过root用户连接数据库`mariadb -u root -p`，在SQL终端，运行下列SQL语句：
+### 初始化数据库
+
+通过root用户连接数据库`/usr/local/mysql/bin/mysql -u root -p`，在SQL终端，运行下列SQL语句：
 
 ```sql
 -- 创建bluewhale用户
@@ -164,24 +169,25 @@ GRANT ALL PRIVILEGES ON bluewhale.* TO 'bluewhale'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-断开连接后，使用新用户连接新数据库`mariadb -u bluewhale -p bluewhale`，你将看到连接成功的信息：
+断开连接后，使用新用户连接新数据库`/usr/local/mysql/bin/mysql -u bluewhale -p bluewhale`，你将看到连接成功的信息：
 
-![mariadb connect success info](./images/task00-mariadb-connect.png)
+![mysql connect success info](./images/task00-mysql-connect.png)
 
 ## 后端服务
 
 本课程使用Python作为后端开发语言，使用Django作为后端框架，使用[pipenv](https://github.com/pypa/pipenv)
 作为Python的依赖管理工具。
 
-* 安装Python3.8：如已有Python3.8环境，可跳过此步骤；如有其他版本，可以使用Conda进行安装管理，参见
-[Conda文档](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-python.html)
-* 安装pipenv: `pip install --user pipenv`
+* 安装Python3.8：如已有Python3.8环境，可跳过此步骤
+* 安装pipenv: `pip install pipenv`
 * 安装Python依赖包：
-  - 进入子目录: `cd <ROOT REPO FOLDER>/bluewhale`
+  - 进入clone下来的项目目录，进入子目录: `cd bluewhale`
   - 同步依赖包: `pipenv sync`
 * 初始化数据表并创建初始用户：
   - 激活virtualenv: `pipenv shell` (如果已经在conda或其他virtualenv环境中，需要先deactivate)
   - 初始化数据表：`python manage.py migrate`
+![db migrate](./images/task00-db-migrate.png)
+
   - 初始化超级管理员用户：`python manage.py createsuperuser`
 * 启动后端服务：`python manage.py runserver`
 
@@ -198,7 +204,7 @@ FLUSH PRIVILEGES;
 * 安装Node.js 版本14 [https://nodejs.org/en/download/](https://nodejs.org/en/download/)。
 如已安装其他版本Node.js，可以使用[nvm](https://github.com/nvm-sh/nvm)进行多版本管理
 * 安装前端依赖包：
-  - 进入子目录：`cd <ROOT REPO FOLDER>/client`
+  - 进入clone下来的项目目录，进入子目录：`cd client`
   - 同步依赖包：`npm install`
 * 启动前端：`npm run serve`
 

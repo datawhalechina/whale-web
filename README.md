@@ -28,21 +28,54 @@ BlueWhale设计课程是datawhale项目开发团队，基于datawhale社区成�
 
 - 组队、修改群昵称
 - 熟悉打卡规则
+- 熟悉REST风格系统
+- 熟悉OpenAPI规范
+- 了解Django框架
+- 了解Vue.js框架
 - 独立完成数据库安装
 - 独立完成代码运营
-- 初步了解代码结构
 
-### Task01：加入开发项目组和搭建编码环境（2天）
-- 
-### Task02：熟悉datawhale需求和技术架构（2天）
-- 
-### Task03：认领datawhale任务和设计编码（7天）
-- 
-### Task04：前后端对接联调和单元测试（2天）
-- 
-### Task05：datawhale迭代测试和发布（1天）
-- 
+### Task01：熟悉后端代码结构及OpenAPI文档编写（2天）
 
+- 后端代码目录结构
+- 后端RESTful API URL定义
+- 查看已实现的接口及内容
+- 使用[swagger-editor](https://github.com/swagger-api/swagger-editor)编辑接口文档并补充遗漏的接口
+
+### Task02：熟悉datawhale需求及编写新API文档（2天）
+
+- 熟悉用户及权限管理需求
+- 设计用户及权限管理相关RESTful API
+- 补充[openapi.yaml](./openapi.yaml)并添加用户及权限管理相关入口
+- 熟悉赛事管理需求
+- 设计赛事管理相关RESTful API
+- 补充[openapi.yaml](./openapi.yaml)并添加赛事管理相关入口
+
+### Task03：熟悉首页需求并使用Vue实现首页功能（2天）
+
+- 前端代码目录结构
+- `vue-router`简介
+- `vuex`状态管理
+- 熟悉`vuetify` material design组件库并使用
+- 基于交互图实现首页功能
+
+### Task04：开发用户管理后端及前端（4天）
+
+- [后端]修改已有Model并添加用户属性
+- [后端]实现对应序列化类及View
+- [后端]创建URL与View的映射
+- [前端]创建用户列表页及用户详情页
+- [前端]创建用户列表路由及用户详情路由
+- 线上环境部署及集成测试
+
+### Task04：开发赛事管理后端及前端（4天）
+
+- [后端]修改已有Model并添加用户属性
+- [后端]实现对应序列化类及View
+- [后端]创建URL与View的映射
+- [前端]创建用户列表页及用户详情页
+- [前端]创建用户列表路由及用户详情路由
+- 线上环境部署及集成测试
 
 #### 参与贡献
 
