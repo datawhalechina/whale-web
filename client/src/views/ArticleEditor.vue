@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="full-height">
     <v-row>
       <v-col
         cols="12"
@@ -12,56 +12,90 @@
         ></v-text-field>
       </v-col>
     </v-row>
-    <editor
-      :api-key="api_key"
-      :init="tiny"
-      v-model="article.content"
-      cloud-channel="5-stable"></editor>
-    <v-btn
-      :loading="loading"
-      color="success"
-      @click="save"
-    >
-      Save
-      <v-icon right>mdi-content-save</v-icon>
-    </v-btn>
+    <v-row class="editor-container">
+      <v-col
+        cols="6"
+        sm="6"
+      >
+        <textarea
+          class="editor"
+          label="Content (Markdown)"
+          v-model="article.content"
+        ></textarea>
+      </v-col>
+      <v-col
+        cols="6"
+        sm="6"
+      >
+        <vue-markdown
+          class="result-html"
+          :source="article.content"
+          :html="false"
+        >
+        </vue-markdown>
+      </v-col>
+    </v-row>
+    <v-row justify="end">
+      <v-btn
+        :loading="loading"
+        color="success"
+        @click="save"
+      >
+        Save
+        <v-icon right>mdi-content-save</v-icon>
+      </v-btn>
+    </v-row>
   </v-container>
 </template>
 
+<style lang="scss" scoped>
+.result-html {
+  // vh, header, footer, title input, save button, container margin, row margin
+  height: calc(100vh - 48px - 60px - 94px - 48px - 24px - 12px);
+  padding: 2px 10px;
+  overflow: scroll;
+  background-color: #fff;
+  border: 1px solid#ccc;
+  border-radius: 4px;
+  position: relative;
+}
+.editor-container {
+  height: calc(100% - 94px - 36px);
+  .editor {
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+    background-color: #f6f6f6;
+    overflow-y: scroll;
+    padding: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+  }
+}
+</style>
+
 <script>
-import Editor from '@tinymce/tinymce-vue';
+import VueMarkdown from 'vue-markdown';
 
 export default {
   name: 'ArticleDetail',
   data() {
     return {
       loading: false,
-      api_key: 'p71cr32cmowz59y5v09l0qt6zur14elj4yftbkhx432lggnp',
       id: null,
       article: {
         title: '',
         content: '',
       },
-      tiny: {
-        height: 500,
-        menubar: false,
-        // inline: true,
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste help wordcount codesample',
-        ],
-        toolbar: [
-          'undo redo | formatselect | bold italic underline strikethrough backcolor | '
-          + 'alignleft aligncenter alignright alignjustify | '
-          + 'bullist numlist outdent indent | removeformat | help',
-          'table tabledelete | image | codesample | code',
-        ],
-      },
     };
   },
   components: {
-    Editor,
+    VueMarkdown,
   },
   methods: {
     save() {
