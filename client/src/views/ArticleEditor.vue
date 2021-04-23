@@ -21,6 +21,7 @@
           class="editor"
           label="Content (Markdown)"
           v-model="article.content"
+          placeholder="Markdown"
         ></textarea>
       </v-col>
       <v-col
@@ -71,10 +72,8 @@
     background-color: #f6f6f6;
     overflow-y: scroll;
     padding: 2px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial;
+    border: 1px solid#ccc;
+    border-radius: 4px;
   }
 }
 </style>

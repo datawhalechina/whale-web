@@ -4,7 +4,7 @@ info:
   description: 'This is API specifications for bluewhale site'
   version: 1.0.0
 servers:
-  - url: /api/v1
+  - url: http://127.0.0.1:4010
 paths:
   "/api/v1/me":
     get:
