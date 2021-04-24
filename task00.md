@@ -150,11 +150,12 @@ var app = new Vue({
 * Windows:
   - 从官网下载MySQL Install for Windows安装包[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
   - 双击并按提示安装
-
+  - 下载数据库连接客户端[DBeaver](https://dbeaver.io/download/)
 ### 初始化数据库
 
 通过root用户连接数据库`/usr/local/mysql/bin/mysql -u root -p`，在SQL终端，运行下列SQL语句：
-
+#### windows 下可以用 DBeaver 连接 mysql
+![mysql-connect-DBeaver-02](./images/task00-mysql-connect-DBeaver-02.png)
 ```sql
 -- 创建bluewhale用户
 CREATE USER bluewhale@'%' IDENTIFIED BY 'bluewhale';
@@ -168,10 +169,13 @@ GRANT ALL PRIVILEGES ON bluewhale.* TO 'bluewhale'@'%';
 GRANT ALL PRIVILEGES ON bluewhale.* TO 'bluewhale'@'localhost';
 FLUSH PRIVILEGES;
 ```
+#### 也可打开 DBeaver 的sql编辑器执上面的sql脚本
+![mysql-connect-DBeaver-04](./images/task00-mysql-connect-DBeaver-04.png)
 
 断开连接后，使用新用户连接新数据库`/usr/local/mysql/bin/mysql -u bluewhale -p bluewhale`，你将看到连接成功的信息：
-
 ![mysql connect success info](./images/task00-mysql-connect.png)
+#### 如果用 DBeaver 可以编辑连接信息,通过 bluewhale 用户的连接 bluewhale 数据库:
+![mysql-connect-DBeaver-05](./images/task00-mysql-connect-DBeaver-05.png)
 
 ## 后端服务
 
@@ -183,11 +187,18 @@ FLUSH PRIVILEGES;
 * 安装Python依赖包：
   - 进入clone下来的项目目录，进入子目录: `cd bluewhale`
   - 同步依赖包: `pipenv sync`
+  
+    windows cmd命令行执行同步效果：
+  ![db sync](./images/task00-pipenv-sync-win.png)
 * 初始化数据表并创建初始用户：
   - 激活virtualenv: `pipenv shell` (如果已经在conda或其他virtualenv环境中，需要先deactivate)
   - 初始化数据表：`python manage.py migrate`
 ![db migrate](./images/task00-db-migrate.png)
 
+    windows cmd命令行初始化数据表效果：
+    ![db migrate](./images/task00-python-manage.py-migrate.png)
+    使用 DBeaver 可以看到新增的数据表: 
+    ![db migrate](./images/task00-mysql-connect-DBeaver-07.png)
   - 初始化超级管理员用户：`python manage.py createsuperuser`
 * 启动后端服务：`python manage.py runserver`
 
@@ -201,7 +212,7 @@ FLUSH PRIVILEGES;
 
 本课程使用ES6作为前端开发语言，Vue作为前端开发库，使用基于Node.js的构建工具进行项目的构建与编译。
 
-* 安装Node.js 版本14 [https://nodejs.org/en/download/](https://nodejs.org/en/download/)。
+* 安装Node.js 版本14.15 [https://nodejs.org/en/download/](https://nodejs.org/en/download/)。
 如已安装其他版本Node.js，可以使用[nvm](https://github.com/nvm-sh/nvm)进行多版本管理
 * 安装前端依赖包：
   - 进入clone下来的项目目录，进入子目录：`cd client`
@@ -215,7 +226,7 @@ FLUSH PRIVILEGES;
 表明前端编译完成，开启了调试模式，并监听在`127.0.0.1:8080`端口。在浏览器中打开该地址将能看到如下界面：
 
 ![homepage](./images/task00-homepage.png)
-
+> npm install 失败 可以更新 node
 # 参考资料
 
  * [https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
