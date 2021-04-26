@@ -5,6 +5,7 @@ import router from './router';
 import vuetify from './plugins/vuetify';
 import store from './store';
 import axios from './utils/request';
+import '@/assets/global.scss';
 
 Vue.config.productionTip = false;
 

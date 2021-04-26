@@ -1,11 +1,17 @@
 <template>
   <v-container fluid>
     <h2 v-text="article.title"></h2>
-    <div v-html="article.content"></div>
+    <vue-markdown
+      :source="article.content"
+      :html="false"
+    >
+    </vue-markdown>
   </v-container>
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown';
+
 export default {
   name: 'ArticleDetail',
   data() {
@@ -15,6 +21,9 @@ export default {
         content: '',
       },
     };
+  },
+  components: {
+    VueMarkdown,
   },
   mounted() {
     const { id } = this.$route.params;

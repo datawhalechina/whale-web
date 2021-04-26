@@ -87,13 +87,18 @@ WSGI_APPLICATION = 'bluewhale.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# ENV variables
+# export DB_HOST=127.0.0.1
+# export DB_USER=bluewhale
+# export DB_PASSWORD=bluewhale
+# export DB_DATABASE=bluewhale
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bluewhale',
-        'USER': 'bluewhale',
-        'PASSWORD': 'bluewhale',
-        'HOST': '127.0.0.1',
+        'NAME': os.getenv('DB_DATABASE', 'bluewhale'),
+        'USER': os.getenv('DB_USER', 'bluewhale'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'bluewhale'),
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
