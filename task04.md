@@ -146,10 +146,10 @@ rsync -avzh --delete --exclude=*.pyc --exclude=.venv --exclude=.idea --exclude=.
 该命令将后端代码目录同步至远程服务器中。登录到远程服务器，在用户主目录下将看到`bluewhale`文件夹，
 其中为后端代码。参考课程[task00](./task00.md)中环境搭建-后端服务的部分，初始化后端项目db及用户。
 
-最终运行时，指定监听的端口（**端口号由助教提供**）：
+最终运行时，运行下列命令（PORT已在环境变量中指定）：
 
 ```shell
- python manage.py runserver 127.0.0.1:8800
+python manage.py runserver 127.0.0.1:$PORT
 ```
 
 ## 同步前端代码

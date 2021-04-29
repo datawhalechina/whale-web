@@ -1,0 +1,20 @@
+:8000 {
+    log {
+        output file /var/log/caddy/team00.log
+    }
+
+    @not_api {
+        not {
+            path /api/*
+        }
+        file {
+            try_files {path} {path}/ /index.html
+        }
+    }
+
+    root * /usr/share/caddy/team00/dist
+    file_server
+    encode zstd gzip
+    rewrite @not_api {http.matchers.file.relative}
+    reverse_proxy /api/* localhost:8800
+}
