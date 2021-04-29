@@ -37,7 +37,8 @@
 
 ![migrate](./images/task04-migrate.png)
 
-生成的migration脚本可以在app目录下面的migrations文件夹中找到，如下：
+生成的migration脚本可以在应用目录下面的migrations文件夹中找到。最终我们通过访问数据，
+可以发现数据库中`core_user`这个用户表新增一列`school`，如下：
 
 ![db after migration](./images/task04-db-after-migration.png)
 
