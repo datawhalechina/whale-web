@@ -4,8 +4,8 @@
 
 # 后端目录结构
 
-后端使用Django开发，子目录为`bluewhale`。`bluewhale`是Django web项目名称，
-通过命令`django-admin startproject bluewhale`创建，项目由一个或多个应用组成。详细的目录结构如下：
+后端使用Django开发，子目录为`backend`。该目录通过命令`django-admin startproject bluewhale`创建，
+然后重命名为`backend`，Django项目由一个或多个应用组成。详细的目录结构如下：
 
 ```shell
 ├── Pipfile

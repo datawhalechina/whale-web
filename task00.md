@@ -185,7 +185,7 @@ FLUSH PRIVILEGES;
 * 安装Python3.8：如已有Python3.8环境，可跳过此步骤
 * 安装pipenv: `pip install pipenv`
 * 安装Python依赖包：
-  - 进入clone下来的项目目录，进入子目录: `cd bluewhale`
+  - 进入clone下来的项目目录，进入子目录: `cd backend`
   - 同步依赖包: `pipenv sync`
   
     windows cmd命令行执行同步效果：

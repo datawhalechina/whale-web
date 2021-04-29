@@ -10,7 +10,7 @@
 
 在[task01](./task01.md)课程中，你已熟悉`User`这个Model类。按照需求，需要扩展用户相关属性。
 
-如期望增加学校字段`school`，可以在`User`该类中添加相关属性（文件路径`bluewhale/core/models.py`）：
+如期望增加学校字段`school`，可以在`User`该类中添加相关属性（文件路径`backend/core/models.py`）：
 
 ```python
     # 已定义属性
@@ -67,7 +67,7 @@
 }
 ```
 
-原因是我们还需处理序列化相关的代码，增加这部分的序列化配置。文件路径为`bluewhale/core/serializers.py`，
+原因是我们还需处理序列化相关的代码，增加这部分的序列化配置。文件路径为`backend/core/serializers.py`，
 类为`UserSerializer`。通过定义该类中`Meta`类的`fields`属性，我们可以添加我们需要序列化的字段。
 
 添加`school`项，并刷新页面[http://127.0.0.1:8000/api/v1/me](http://127.0.0.1:8000/api/v1/me)，
@@ -85,7 +85,7 @@
 * 修改 - `put -> update` & `patch -> partial_update`
 * 删除 - `delete -> destroy`
 
-如果需要对特定的接口做特殊的处理，可以通过`Override`实际处理函数进行处理，具体示例可以参考`bluewhale/blog/views.py`
+如果需要对特定的接口做特殊的处理，可以通过`Override`实际处理函数进行处理，具体示例可以参考`backend/blog/views.py`
 中的处理（该示例中使用非自增的id作为主键，而是使用生成uuid的方式作为主键）：
 
 ```python
@@ -119,7 +119,7 @@ class ArticleDetailView(BasicRetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
 ```
 
-最后在`bluewhale/bluewhale/urls.py`中，对所要的接口路径进行URL与APIView的映射，如：
+最后在`backend/bluewhale/urls.py`中，对所要的接口路径进行URL与APIView的映射，如：
 
 ```python
     path(f'{api_prefix}/articles', ArticleListCreateView.as_view(), name='articles'),
@@ -141,11 +141,12 @@ export USER=team00      # 替换成助教提供的用户名
 export HOST=127.0.0.1   # 替换成助教提供的服务器地址
 rsync -avzh --delete --exclude=*.pyc --exclude=.venv --exclude=.idea --exclude=.env \
         --exclude=.git --exclude=__pycache__ \
-        bluewhale $USER@$HOST:
+        backend $USER@$HOST:
 ```
 
-该命令将后端代码目录同步至远程服务器中。登录到远程服务器，在用户主目录下将看到`bluewhale`文件夹，
-其中为后端代码。参考课程[task00](./task00.md)中环境搭建-后端服务的部分，初始化后端项目db及用户。
+该命令将后端代码目录同步至远程服务器中。登录到远程服务器，在用户主目录下将看到`backend`文件夹，
+其中为后端代码。参考课程[task00](./task00.md)中**环境搭建**-**后端服务**的部分，初始化后端项目db及用户
+（远程服务器中已经安装了Python3.8环境，MySQL数据库，并初始化了MySQL的用户，相关步骤可以略过）
 
 最终运行时，运行下列命令（PORT已在环境变量中指定）：
 
