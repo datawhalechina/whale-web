@@ -167,5 +167,33 @@ rsync -avzh dist $USER@$HOST:/usr/share/caddy/$USER
 ```
 
 该命令将编译后的前端代码目录`dist`同步至远程服务器中。
+## windows 部署
+下载[xshell和xftp](https://www.netsarang.com/en/free-for-home-school/)
+
+![win-linux文件传输工具](./images/task04-deploy-win-tools.png)
+
+>依次安装xshell和xftp
+
+打开xshell并新建连接
+
+![新建连接-目标主机](./images/task04-deploy-win-connect01.png)
+
+![新建连接-用户名密码](./images/task04-deploy-win-connect02.png)
+
+在工具栏点击绿色按钮打开文件传输工具xftp
+
+![文件传输-open](./images/task04-deploy-win-xftp-openning.png)
+
+弹出文件夹预览页面（左侧为本地路径，右侧为服务器路径）
+
+> 如果文件夹路径不一致，可以先cd到backend或其他对应目录再打开xftp
+
+![文件传输-open](./images/task04-deploy-win-xftp-sync01.png)
+
+确定两边目录一致后,点击下方的传输按钮进行文件夹同步
+
+>也可以将左侧的目录直接拖拽到右侧进行覆盖
+
+如果同步前端代码则注意调整相应的文件目录,方法同backed
 
 部署完成后，打开浏览器输入服务器地址，你将能看到实现的界面。
