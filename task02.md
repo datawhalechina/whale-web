@@ -1,6 +1,7 @@
 # 前言
 
 本节课程，你将熟悉开发需求，并根据需求设计接口文档并编写接口规范。
+本课程所用到的交互稿请查考：https://app.mockplus.cn/app/share-af24fe961aee2bd2b6a6bba9eaf5d8ceshare-pqoGMg0E5c3/rp?hmsr=share
 
 # 用户管理
 
