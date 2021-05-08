@@ -5,7 +5,9 @@
 # 测试用例
 
 在完成所有模块开发、自测、联调后将进行转测，测试用例如下（各小队可以自行组织完成如下用例的测试）：
-![task05-test](media/task05-test.jpg)
+![task05-test](./images/task05-test.jpg)
+
+
 
 # 发布上线
 
