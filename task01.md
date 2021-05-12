@@ -198,6 +198,18 @@ Django REST Framework 本身提供方便的工具可以查看已有接口的返�
 
 在上个课程中，我们简单介绍了OpenAPI相关规范。在我们的初始项目中，已经添加了初始的接口规范：[openapi.yaml](./openapi.yaml)
 
+我们可以通过如下几种方式对该接口规范文档进行编辑：
+
+### VS Code插件（推荐）
+在VS Code插件面板中搜索*swagger*，安装*OpenAPI(Swagger)Editor*。
+
+在VS Code编辑器中打开`openapi.yaml`，点击左侧API图标，会展示当前API规范的大纲。点击右上角预览按钮，可以对API规范文档
+进行预览。入下图所示
+
+![VS Code Swagger Editor](./images/task01-vscode-swagger.png)
+
+### 官方编辑器
+
 我们可以使用官方提供的工具[swagger-editor](https://github.com/swagger-api/swagger-editor)对文档进行编辑。
 
 * 首先下载docker镜像`docker pull swaggerapi/swagger-editor`
