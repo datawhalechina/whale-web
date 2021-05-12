@@ -72,6 +72,111 @@ paths:
                     type: integer
                   code:
                     type: integer
+  "/api/v1/verify/{token}":
+    get:
+      summary: verify verification token
+      parameters:
+        - name: token
+          in: path
+          description: token of user
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: validate ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/SendVerificationForm"
+                  code:
+                    type: integer
+        '400':
+          description: validate failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonResponse"
+  "/api/v1/register":
+    post:
+      summary: create a new account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginForm"
+        required: true
+      responses:
+        '201':
+          description: create account success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+        '409':
+          description: Email has been registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonResponse"
+  "/api/v1/articles":
+    post:
+      summary: create a new article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArticleCreateForm"
+        required: true
+      responses:
+        '201':
+          description: create account success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Article"
+                  code:
+                    type: integer
+  "/api/v1/articles/{articleid}":
+    get:
+      summary: get article detail
+      parameters:
+        - name: articleid
+          in: path
+          description: id of article
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: get article sucess
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Article"
+                  code:
+                    type: integer
+        '400':
+          description: article no exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommonResponse"
+
 components:
   schemas:
     CommonResponse: # common response which has data and code properties
@@ -134,3 +239,35 @@ components:
           minimum: 1
         name:
           type: string
+    ArticleCreateForm:
+      type: object
+      properties:
+        title:
+          type: string
+          maximum: 64
+        content:
+          type: string
+    Article:
+      type: object
+      properties:
+        id:
+          type: string
+          maximum: 36
+        title:
+          type: string
+          maximum: 64
+        content:
+          type: string
+        create_at:
+          type: string
+          format: date-time
+        updateed_at:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        author_id:
+          type: integer
+          format: int64
+          minimum: 1
+
