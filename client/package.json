@@ -13,7 +13,7 @@
     "axios": "^0.21.1",
     "babel-runtime": "^6.26.0",
     "core-js": "^3.6.5",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "md5": "^2.3.0",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",
@@ -28,7 +28,7 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-unit-mocha": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-service": "^4.5.13",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
@@ -43,8 +43,7 @@
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.7.0"
   },
-  "gitHooks": {
-  },
+  "gitHooks": {},
   "lint-staged": {
     "*.{js,jsx,vue}": [
       "vue-cli-service lint",
