@@ -98,7 +98,7 @@ DATABASES = {
         'NAME': os.getenv('DB_DATABASE', 'bluewhale'),
         'USER': os.getenv('DB_USER', 'bluewhale'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'bluewhale'),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'HOST': os.getenv('DB_HOST', '192.168.10.211'),
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
