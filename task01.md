@@ -227,9 +227,12 @@ Django REST Framework 本身提供方便的工具可以查看已有接口的返�
 返回格式等内容。
 ### 编辑示例
 编写openapi 文档涉及以下步骤：
+
 1、明确接口需求，如 我们需要查询文章列表，在最近文章页面里展示
-2、设计请求url、请求参数、响应内容，这里为了让小伙伴们先熟悉openapi已经给小伙伴做好了接口设计，大家可以在此基础上修改调整（开发中需要前后端根据需求协商确定url、属性名、类型等接口信息）
-> 可以在前端浏览器，如chrome 快捷键F12打开web调试器 查看接口请求和响应信息
+
+2、设计请求url、请求参数、响应内容，这里为了让小伙伴们先熟悉openapi已经做好了接口设计，大家可以在此基础上修改调整（开发中需要前后端根据需求协商确定url、属性名、类型等接口信息）
+
+> 可以在前端浏览器，如chrome 快捷键F12打开web调试器 查看已提供的接口请求和响应信息
 
 ![Swagger Editor openapi01](./images/task01-openapi-edit01.png)
 
@@ -237,8 +240,10 @@ Django REST Framework 本身提供方便的工具可以查看已有接口的返�
 
 3、打开编辑器，如swagger editor,编辑器或者插件提供了一些便捷操作辅助我们编写，这里我们先插入path
 ![Swagger Editor openapi03](./images/task01-openapi-edit03.png)
+
 4、再添加操作
 ![Swagger Editor openapi04](./images/task01-openapi-edit04.png)
+
 5、添加响应信息
 ![Swagger Editor openapi05](./images/task01-openapi-edit05.png)
 > 为了结构清晰和数据复用（相同的内容可以用$ref引用）,我们在 components.schemas 下创建 响应对象
@@ -249,7 +254,8 @@ Django REST Framework 本身提供方便的工具可以查看已有接口的返�
 ![Swagger Editor openapi06](./images/task01-openapi-edit06.png)
 > 编写时注意yaml语法、tab空格对齐
 
-7、尝试执行，如果响应如期正常返回就编写完成了
+7、尝试执行，如果响应如期正常返回就编写完成了(需要启动运行 mock server 加载编写好的openapi.yaml，运行mock server的方法下面有讲到)
+![Swagger Editor openapi08](./images/task01-openapi-edit08.png)
 
 ## 运行mock server
 
