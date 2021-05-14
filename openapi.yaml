@@ -147,7 +147,7 @@ paths:
                 type: object
                 properties:
                   data: 
-                    type: array
+                    type: integer
                   code:
                     type: integer
       
