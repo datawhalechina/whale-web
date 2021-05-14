@@ -257,6 +257,43 @@ Django REST Framework 本身提供方便的工具可以查看已有接口的返�
 7、尝试执行，如果响应如期正常返回就编写完成了(需要启动运行 mock server 加载编写好的openapi.yaml，运行mock server的方法下面有讲到)
 ![Swagger Editor openapi08](./images/task01-openapi-edit08.png)
 
+### 其他
+
+对于已有的接口如`/api/v1/send-verification`，本身不存在增删改查的概念，只是纯粹的接口。我们可以通过
+查看代码确认请求路径、HTTP方法、请求体、返回值等数据。
+
+其URL路径在`backend/bluewhale/urls.py`中定义：
+
+```Python
+path(f'{api_prefix}/send-verification', send_verification_mail, name='send verification mail'),
+```
+
+对应调用函数为`backend/core/views_auth.py`中的函数`send_verification_mail`：
+
+```Python
+@api_view(['POST'])
+def send_verification_mail(request):
+    data = request.data
+    email = data.get('email')
+    # Method BODY
+    return Response({"data": result, "code": 0})
+```
+
+其中装饰器`api_view`是Django REST Framework提供的函数，参数`POST`表示该函数只接受`HTTP POST`方法，
+对应`openapi.yaml`中的`post`入口。
+
+函数实现中先获取请求体中的`email`属性，对应`openapi.yaml`中的`SendVerificationForm`结构体。
+
+发送邮件后返回`Response({"data": result, "code": 0})`实例，对应`openapi.yaml`中的`responses`结构体。
+
+具体映射如图：
+
+![API vs openapi.yaml](./images/task01-api-request-response.png)
+
+在task00中搭建的环境里面，我们可以通过界面来观察浏览器发送的请求和接收的数据：
+
+![API in browser](./images/task01-api-send-verification.png)
+
 ## 运行mock server
 
 当我们完成OpenAPI的接口规范编写后，我们可以通过工具将接口规范文档转成mock server提供给前端开发使用。
@@ -279,8 +316,8 @@ Django REST Framework 本身提供方便的工具可以查看已有接口的返�
 
 本期课程任务为完成剩余已实现的接口文档的编写：
 
-* `api/v1/verify/<token> [name='verify verification token']`
-* `api/v1/register [name='register']`
+* ~~`api/v1/verify/<token> [name='verify verification token']`~~ (涉及邮件发送，取消)
+* ~~`api/v1/register [name='register']`~~ （涉及邮件发送，取消）
 * `api/v1/articles [name='articles']`
 * `api/v1/articles/<pk> [name='article']`
 
