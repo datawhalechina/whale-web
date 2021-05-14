@@ -145,7 +145,7 @@ var app = new Vue({
   - 从官网下载DMG安装包[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
   - 双击并按提示安装
   - 安装完成后，在系统设置最后能够找到MySQL的服务，如下所示
-![system preferences - mysql](./images/task00-mysql.png)
+  ![system preferences - mysql](./images/task00-mysql.png)
 
 * Windows:
   - 从官网下载MySQL Install for Windows安装包[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
@@ -193,7 +193,7 @@ FLUSH PRIVILEGES;
 * 初始化数据表并创建初始用户：
   - 激活virtualenv: `pipenv shell` (如果已经在conda或其他virtualenv环境中，需要先deactivate)
   - 初始化数据表：`python manage.py migrate`
-![db migrate](./images/task00-db-migrate.png)
+    ![db migrate](./images/task00-db-migrate.png)
 
     windows cmd命令行初始化数据表效果：
     ![db migrate](./images/task00-python-manage.py-migrate.png)

@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     # 'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
+#    'rest_auth',
     'core',
     'blog'
 ]
@@ -95,10 +95,10 @@ WSGI_APPLICATION = 'bluewhale.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_DATABASE', 'bluewhale'),
-        'USER': os.getenv('DB_USER', 'bluewhale'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'bluewhale'),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'NAME':  'bluewhale',
+        'USER': 'bluewhale',
+        'PASSWORD':  'bluewhale',
+        'HOST':  '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
@@ -210,3 +210,12 @@ if os.getenv('ENV', 'local') == 'production':
 
 pymysql.version_info = (2, 0, 3, 'final', 0)
 pymysql.install_as_MySQLdb()
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',   # 基本认证
+        'rest_framework.authentication.SessionAuthentication',  # session认证
+    )
+}
