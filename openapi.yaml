@@ -62,7 +62,7 @@ paths:
               $ref: "#/components/schemas/SendVerificationForm"
       responses:
         '200':
-          description: success logout
+          description: success send verification
           content:
             application/json:
               schema:
