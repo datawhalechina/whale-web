@@ -91,18 +91,18 @@ paths:
                     $ref: "#/components/schemas/SendVerificationForm"
                   code:
                     type: integer 
-#        '400':
-#          description: error email
-#          content:
-#            application/json:
-#              schema:
-#                type: object
-#                properties:
-#                  data:
-#                    type: array
-#                  code:
-#                    type: integer
-#      
+        '400':
+          description: error email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                  code:
+                    type: integer
+
 
 
 
