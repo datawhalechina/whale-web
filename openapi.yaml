@@ -52,6 +52,7 @@ paths:
       responses:
         '200':
           description: success logout
+
   "/api/v1/send-verification":
     post:
       summary: send verification mail
@@ -72,6 +73,109 @@ paths:
                     type: integer
                   code:
                     type: integer
+
+
+
+  "/api/v1/verify/<token>":
+    get:
+      summary: verify verification token
+      responses:
+        '200':
+          description: current email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/SendVerificationForm"
+                  code:
+                    type: integer 
+        '400':
+          description: error email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                  code:
+                    type: integer
+
+
+
+
+  "/api/v1/register":
+    post: 
+      summary: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/SendVerificationForm"
+      responses:
+        '200':
+          description: success register
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: 
+                    type: integer
+                  code:
+                    type: integer
+        
+
+
+  "/api/v1/articles":
+
+    get: 
+      summary: articles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginForm"
+      responses:
+        '200':
+          description: success register
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: 
+                    type: integer
+                  code:
+                    type: integer
+      
+                    
+  "/api/v1/articles/<pk>":
+    get: 
+      summary: article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginForm"
+      responses:
+        '200':
+          description: success register
+          content:
+             image/png:
+              schema:
+                type: object
+                properties:
+                  data: 
+                    $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+
+
+
+         
 components:
   schemas:
     CommonResponse: # common response which has data and code properties
