@@ -159,9 +159,22 @@ components:
         email:
           type: string
           format: email
+        Avatar:
+          type: string
+          format: picture
         phone:
           type: string
         nickname:
+          type: string
+        vx:
+          type: string
+        school:
+          type: string
+        profession:
+          type: string
+        company:
+          type: string
+        position:
           type: string
         date_joined:
           type: string
