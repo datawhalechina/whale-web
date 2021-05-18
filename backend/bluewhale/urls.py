@@ -37,7 +37,12 @@ urlpatterns = [
     path(f'{api_prefix}/register', register, name='register'),
     path(f'{api_prefix}/me', get_user_info, name='user profile'),
 
+    path(f'{api_prefix}/me/add',add_user_info,name='user profile'),
+    path(f'{api_prefix}/me/delete',del_user_info,name='user profile'),
+    path(f'{api_prefix}/me/update',update_user_info,name='user profile'),
+
     path(f'{api_prefix}/articles', ArticleListCreateView.as_view(), name='articles'),
     path(f'{api_prefix}/articles/<pk>', ArticleDetailView.as_view(), name='article'),
     path(f'{api_prefix}/', include(router.urls)),
+
 ]

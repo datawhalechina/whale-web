@@ -19,6 +19,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         help_text=_('Designates whether this user should be treated as active. '
                     'Unselect this instead of deleting accounts.'),
     )
+    #添加
+    user_img = models.CharField(max_length=255,verbose_name="头像",default='')
+    wx_num = models.CharField(max_length=50,verbose_name='微信号',default='')
+    school = models.CharField(max_length=255,verbose_name='学校',default='')
+    major = models.CharField(max_length=255,verbose_name="专业",default='')
+    gs = models.CharField(max_length=255,verbose_name='公司',default='')
+    zw = models.CharField(max_length=255,verbose_name='职位',default='')
+
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     description = models.TextField(_('description'), blank=True)
     last_login_ip = models.CharField(_('last login ip'), max_length=64, blank=True)

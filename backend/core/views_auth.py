@@ -8,6 +8,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import login as django_login
 import django.core.exceptions
 from django.conf import settings
+from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 from itsdangerous import URLSafeTimedSerializer
 from rest_auth.views import LoginView
@@ -124,3 +125,14 @@ def register(request):
     user.save()
     django_login(request, user)
     return Response({"data": UserSerializer(user).data, "code": 0}, status=status.HTTP_201_CREATED)
+
+
+#updated for task02
+def add_user_info(request):
+    return HttpResponse("add_user_info")
+
+def del_user_info(request):
+    return HttpResponse("del_user_info")
+
+def update_user_info(request):
+    return HttpResponse("update_user_info")
