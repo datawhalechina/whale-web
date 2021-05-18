@@ -72,6 +72,132 @@ paths:
                     type: integer
                   code:
                     type: integer
+  "/api/v1/verify/{token}":
+    get:
+      summary: get verified email from token
+      parameters:
+        - in: path
+          name: token
+          schema:
+            type: string
+          required: true
+          description: string token
+      responses:
+        '200':
+          description: success get verified token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    format: email
+                  code:
+                    type: integer
+  "/api/v1/register":
+    post:
+      summary: register user by token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: success get verified token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+  "/api/v1/articles":
+    get:
+      summary: get list of articles
+      responses:
+        '200':
+          description: success get articles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Article"
+                  code:
+                    type: integer
+    post:
+      summary: post one article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Article"
+      responses:
+        '201':
+          description: success post one article
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Article"
+                  code:
+                    type: integer
+  "/api/v1/articles/{pk}":
+    summary: fetch/edit/delete one article
+    parameters:
+      - in: path
+        name: pk
+        schema:
+          type: string
+        required: true
+        description: primary key
+    get:
+      summary: fetch one article
+      responses:
+        '200':
+          description: success get one article
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Article"
+                  code:
+                    type: integer
+    put:
+      summary: edit one article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Article"
+      responses:
+        '200':
+          description: success edit one article
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Article"
+    delete:
+      summary: delete one article
+      responses:
+        '204':
+          description: success delete one article
 components:
   schemas:
     CommonResponse: # common response which has data and code properties
@@ -134,3 +260,25 @@ components:
           minimum: 1
         name:
           type: string
+    Article:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        author:
+          type: string
+          format: email
+        title:
+          type: string
+        content:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          enum: [0,1,2]

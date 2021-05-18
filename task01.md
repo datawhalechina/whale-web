@@ -324,3 +324,46 @@ def send_verification_mail(request):
 完成接口规范文档的编写后，重启mock server。并可以通过运行下面命令，使前端项目以mock server为接口进行启动：
 
 `API_PORT=4010 npm run serve`
+
+## 参考结果
+
+要编写的数据接口，涉及两种类型，一种为单路径的纯API（注册相关），另外一种为RESTful风格API（article相关）。
+
+注册相关接口涉及邮件发送等环节，不做要求，在openapi.yaml中给出了参考的API写法。
+
+article相关接口涉及RESTful中的资源的概念，这里资源指的是类似用户、组、文章等实体，在一般的web场景中，我们一般
+会对这些资源进行**增删改查**的操作。
+
+比如在文章article的场景中，我们有如下几种操作：
+* 获取当前文章列表 - 查
+* 写一篇新文章 - 增
+* 获取单个文章内容 - 查
+* 编辑一篇文章 - 改
+* 移除一篇文章 - 删
+
+我们把article当做一个集合，前两个动作针对的是集合（向集合中新增元素、查询集合所有元素），后三个动作针对的是集合中的
+个体（获取集合中的某个元素、修改某个元素、删除某个元素）。所以我们在定义相关RESTful接口时，需要两种资源（对应两种URL PATH）：
+* `artitles` - 集合
+* `artitles/<primary_key>` - 集合中的元素
+
+对应的，我们可以在后端URL设置代码`bluewhale/urls.py`中找到相关的资源定义：
+
+```python
+    path(f'{api_prefix}/articles', ArticleListCreateView.as_view(), name='articles'),
+    path(f'{api_prefix}/articles/<pk>', ArticleDetailView.as_view(), name='article'),
+```
+
+具体代码的实现细节可以参考代码`backend/core/generics.py`中的两个类及其父类`ListCreateAPIView` & `RetrieveUpdateDestroyAPIView`
+
+针对这两种资源，我们可以在`openapi.yaml`文档中新增两个入口path：
+* `/api/v1/articles`
+* `/api/v1/articles/{pk}`
+
+在集合的资源下面，新增两类方法`get` & `post`用来表示获取列表及向集合中新增元素，
+在单元素的资源下面，新增三类方法`get` & `put` & `delete`，表示对单个资源的读取、修改与删除。
+
+> 这里有个很常见的误区，就是将对资源的操作比如增删改写到URL路径中，如`/api/v1/articles/get`及`/api/v1/articles/delete`，
+> 正确的做法是只在PATH中定义资源，而把对资源的操作方式通过HTTP Method来表达（参考task00中关于REST的描述及介绍：
+>[https://github.com/datawhalechina/whale-web/blob/master/task00.md#rest%E7%AE%80%E4%BB%8B](REST简介)）。
+
+具体API的定义请参考`openapi.yaml`中对应的article相关入口。
