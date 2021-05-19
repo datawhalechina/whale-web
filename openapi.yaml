@@ -110,7 +110,7 @@ paths:
                   type: string
       responses:
         '201':
-          description: success get verified token
+          description: success register user
           content:
             application/json:
               schema:
@@ -198,6 +198,162 @@ paths:
       responses:
         '204':
           description: success delete one article
+  "/api/v1/users":
+    get:
+      summary: get list of users
+      responses:
+        '200':
+          description: success get users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+    post:
+      summary: add one user by admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        '201':
+          description: success add one user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+  "/api/v1/users/{pk}":
+    summary: fetch/edit/delete one user
+    parameters:
+      - in: path
+        name: pk
+        schema:
+          type: integer
+        required: true
+        description: primary key
+    get:
+      summary: fetch one user
+      responses:
+        '200':
+          description: success get one user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/User"
+                  code:
+                    type: integer
+    put:
+      summary: edit one user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        '200':
+          description: success edit one user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      summary: delete one user
+      responses:
+        '204':
+          description: success delete one user
+  "/api/v1/competitions":
+    get:
+      summary: get list of competitions
+      responses:
+        '200':
+          description: success get competitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Competition"
+                  code:
+                    type: integer
+    post:
+      summary: post one competition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Competition"
+      responses:
+        '201':
+          description: success post one competition
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Competition"
+                  code:
+                    type: integer
+  "/api/v1/competitions/{pk}":
+    summary: fetch/edit/delete one competition
+    parameters:
+      - in: path
+        name: pk
+        schema:
+          type: string
+        required: true
+        description: primary key
+    get:
+      summary: fetch one competition
+      responses:
+        '200':
+          description: success get one competition
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Competition"
+                  code:
+                    type: integer
+    put:
+      summary: edit one competition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Competition"
+      responses:
+        '200':
+          description: success edit one competition
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Competition"
+    delete:
+      summary: delete one competition
+      responses:
+        '204':
+          description: success delete one competition
 components:
   schemas:
     CommonResponse: # common response which has data and code properties
@@ -247,6 +403,18 @@ components:
           format: ipv4
         description:
           type: string
+        avatar: # 头像
+          type: string
+        school: # 学校
+          type: string
+        speciality: # 专业
+          type: string
+        wechat: # 微信号
+          type: string
+        company: # 公司
+          type: string
+        title: # 职位
+          type: string
         groups:
           type: array
           items:
@@ -261,6 +429,28 @@ components:
         name:
           type: string
     Article:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        author:
+          type: string
+          format: email
+        title:
+          type: string
+        content:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          enum: [0,1,2]
+    Competition:
       type: object
       properties:
         id:
