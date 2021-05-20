@@ -87,8 +87,7 @@ Django提供了对象关系映射（ORM, Object-Relational Mapping），可以�
 通过数据模型语句来描述数据模型，并通过`makemigrations`及`migrate`等命令行工具自动生成数据模型迁移脚本并
 自动创建数据库表。同时ORM屏蔽了底层数据库，大多数情况下，一套ORM模型可以运行在多种主流的关系型数据库上（如MySQL或PostgreSQL）。
 
-通过定义URL规则及视图映射，Django可以方便的将URL路径与视图进行关联，并将Python代码与URL进行解耦。同时URL中的
-宏将会以参数的形式传递给视图函数。
+通过定义URL规则及视图映射，Django可以方便的将URL路径与视图进行关联，并将Python代码与URL进行解耦。同时URL中的宏将会以参数的形式传递给视图函数。
 
 Django还提供模板功能，通过结合Python对象与模板文件，Django可以渲染出静态HTML文件并作为HTTP请求的返回内容。
 （在本课程中使用前后端分离理念，未使用模板）
@@ -145,7 +144,7 @@ var app = new Vue({
   - 从官网下载DMG安装包[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
   - 双击并按提示安装
   - 安装完成后，在系统设置最后能够找到MySQL的服务，如下所示
-![system preferences - mysql](./images/task00-mysql.png)
+  ![system preferences - mysql](./images/task00-mysql.png)
 
 * Windows:
   - 从官网下载MySQL Install for Windows安装包[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
@@ -170,10 +169,11 @@ GRANT ALL PRIVILEGES ON bluewhale.* TO 'bluewhale'@'localhost';
 FLUSH PRIVILEGES;
 ```
 #### 也可打开 DBeaver 的sql编辑器执上面的sql脚本
-![mysql-connect-DBeaver-04](./images/task00-mysql-connect-DBeaver-04.png)
+## ![mysql-connect-DBeaver-04](./images/task00-mysql-connect-DBeaver-04.png)
 
 断开连接后，使用新用户连接新数据库`/usr/local/mysql/bin/mysql -u bluewhale -p bluewhale`，你将看到连接成功的信息：
 ![mysql connect success info](./images/task00-mysql-connect.png)
+
 #### 如果用 DBeaver 可以编辑连接信息,通过 bluewhale 用户的连接 bluewhale 数据库:
 ![mysql-connect-DBeaver-05](./images/task00-mysql-connect-DBeaver-05.png)
 
@@ -193,7 +193,7 @@ FLUSH PRIVILEGES;
 * 初始化数据表并创建初始用户：
   - 激活virtualenv: `pipenv shell` (如果已经在conda或其他virtualenv环境中，需要先deactivate)
   - 初始化数据表：`python manage.py migrate`
-![db migrate](./images/task00-db-migrate.png)
+    ![db migrate](./images/task00-db-migrate.png)
 
     windows cmd命令行初始化数据表效果：
     ![db migrate](./images/task00-python-manage.py-migrate.png)
